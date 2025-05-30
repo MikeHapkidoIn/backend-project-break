@@ -1,87 +1,29 @@
-// rutas de producto
-const express = require('express')
+const express = require('express');
 const router = express.Router();
+const productController = require('../controllers/productController');
 
-const Post = require ("../models/Post.js");
-
-
-router.post("/create", async(req, res) =>{
-  try{
-    const post = await Post.create ({title:req.body.title, body:req.body.body});
-    res.status(201).send(post)
-
-  }catch (err){
-    console.error(error);
-    res.status(500).send ({message: "Hay un problema al crear el Post"})
-  }
-})
-
-
-
-
-
-router.get("/", async (req, res)=> {
-  try {
-    const posts = await Post.find();
-    res.status(200).send (posts);
-  } catch (err) {
-    res.status(500).send ({message:"Hay un error al recoger los Posts"})
-  }
-})
-
-router.get("/id/:id", async(req, res) => {
-    try {
-        const post = await Post.findById(req.params.id);
-        if (!post) {
-            return res.status(404).send({ message: "Post not found" });
-        }
-        res.status(200).send(post);
-    } catch (error) {
-        console.error(error);
-        res
-            .status(500)
-            .send({ message: "There was a problem trying to get the post" });
-    }
-  });
-
-
-  router.get("/title/:title", async(req, res) => {
-    try {
-        const post = await Post.find({ title: req.params.title });
-        if (!post) {
-            return res.status(404).send({ message: "Post not found" });
-        }
-        res.status(200).send(post);
-    } catch (error) {
-        console.error(error);
-        res
-            .status(500)
-            .send({ message: "There was a problem trying to get the post" });
-    }
+router.get('/', (req, res) => {
+  res.redirect('/products');
 });
 
+//rutas para el publico
 
-router.put ('/id/:id', async(req, res)=>{
-  try{
-    const post = await Post.findByIdAndUpdate(req.params.id, {title: req.body.title, body:req.body.body});
-    if (!post)return res.status(404).send({message:"No se ha encontrado"});
-    res.status(200).send(post);
+router.get('/products', productController.showProducts); // Devuelve todos los productos. Cada producto tendrá un enlace a su página de detalle.
+router.get('/products/:productId', productController.showProductById); //Devuelve el detalle de un producto.
 
-  }catch (err){
-    res.status(500).send({message: "No se ha podido actualizar"})
-  }
-});
+//rutas para el administrador
 
+router.get('/dashboard', productController.showDashboard); //Devuelve el dashboard del administrador, En el dashboard aparecerán todos los artículos que se hayan subido. Si clickamos en uno de ellos nos llevará a su página para poder actualizarlo o eliminarlo.
+router.get('/dashboard/new', productController.showNewProductForm); // Devuelve el formulario para subir un artículo nuevo.
+router.get('/dashboard/:productId', productController.showProductById); // Devuelve el detalle de un producto en el dashboard.      
+router.get('/dashboard/:productId/edit', productController.showEditProductForm); // Devuelve el formulario para editar un producto.
 
-router.delete ('/delete/:id', async(req, res)=>{
-  try{
-    const post = await Post.findByIdAndDelete(req.params.id);
-    if (!post)return res.status(404).send({message:"No se ha encontrado"});
-    res.status(200).send({message: "Se ha borrado correctamente"});
+//crea y actualiza
+router.post('/dashboard', productController.createProduct);//Crea un nuevo producto.
+router.put('/dashboard/:productId', productController.updateProduct); // Actualiza un producto.
 
-  }catch (err){
-    res.status(500).send({message: "No se ha podido eliminar"})
-  }
-});
+//elimina
+router.delete('/dashboard/:productId/delete', productController.deleteProduct); // Elimina un producto.
+router.post('/dashboard/:productId/delete', productController.deleteProduct); // Elimina un producto. Usamos POST para evitar problemas con los navegadores que no soportan DELETE en formularios.
 
-module.exports = router; */
+module.exports = router;
