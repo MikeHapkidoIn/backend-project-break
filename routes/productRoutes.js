@@ -26,4 +26,4 @@ router.put('/dashboard/:productId', productController.updateProduct); // Actuali
 router.delete('/dashboard/:productId/delete', productController.deleteProduct); // Elimina un producto.
 router.post('/dashboard/:productId/delete', productController.deleteProduct); // Elimina un producto. Usamos POST para evitar problemas con los navegadores que no soportan DELETE en formularios.
 
-module.exports = router;
+module.exports = router;
