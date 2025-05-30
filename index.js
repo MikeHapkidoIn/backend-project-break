@@ -1,21 +1,18 @@
-// levantar servidor express
-
-const express = require("express")
+const express = require('express')
 const app = express()
-
-const PORT = 3000
-
-const dbConnection = require ("./config/db")
-dbConnection();
-
+require('dotenv').config();
+const dbConnecction = require('./config/db.js')
+const productRoutes = require('./routes/productRoutes');
+const methodOverride = require('method-override');
 
 app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }))
+app.use(methodOverride('_method'));
 
-app.get('/', (req, res) => {
-res.send('funciona')
-})
+app.use('/', productRoutes);
 
-app.listen(PORT, () =>{
-  console.log(`El servidor esta escuchando en http://localhost:${PORT}`)
-})
+
+const PORT = process.env.PORT;
+dbConnecction()
+ 
+app.listen(PORT, () => console.log(`http://localhost:${PORT}`));
