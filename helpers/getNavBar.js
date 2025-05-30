@@ -9,8 +9,5 @@ module.exports = function getNavBar() {
       <a href="/dashboard">Dashboard</a>
       <a href="/">Login</a>
     </nav>     
-     
-     
-
-  `;
+  `;
 };
