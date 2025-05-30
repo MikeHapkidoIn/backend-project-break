@@ -1,7 +1,10 @@
-const productController = {
+const { Product, sizes, categories } = require('../models/Product');
+const getNavBar = require('../helpers/getNavBar');
+const getProductCards = require('../helpers/getProductCards');
+const baseHtml = require('../helpers/baseHtml');
 
-  
-// mostrar todos los productos  
+const productController = {
+    
 showProducts: async (req, res) => {
   try {
     const products = await Product.find();
@@ -21,8 +24,6 @@ showProducts: async (req, res) => {
   }
 },
 
-
-// mostrar detalles del producto
 showProductById: async (req, res) => {
   try {
     const productId = req.params.productId;
@@ -50,8 +51,6 @@ showProductById: async (req, res) => {
   }
 },
 
-// Mostrar el dashboard
-
 showDashboard: async (req, res) => {
   try {
     const products = await Product.find();
@@ -70,8 +69,6 @@ showDashboard: async (req, res) => {
     res.status(500).send('Error al cargar dashboard');
   }
 },
-
-//mostrar nuevo producto
 
 showNewProductForm: (req, res) => {
   const html = `
@@ -107,7 +104,6 @@ showNewProductForm: (req, res) => {
   `;
   res.send(html);
 },
-//Crear nuevo producto
 
 createProduct: async (req, res) => {
   try {
@@ -119,8 +115,6 @@ createProduct: async (req, res) => {
     res.status(500).send('Error al crear producto');
   }
 },
-
-// editar y modificar el producto
 
 showEditProductForm: async (req, res) => {
   try {
@@ -164,8 +158,6 @@ showEditProductForm: async (req, res) => {
   }
 },
 
-//actualizar producto
-
 updateProduct: async (req, res) => {
   try {
     const productId = req.params.productId;
@@ -176,8 +168,6 @@ updateProduct: async (req, res) => {
     res.status(500).send('Error al actualizar producto');
   }
 },
-
-// eliminar producto
 
 deleteProduct: async (req, res) => {
   try {

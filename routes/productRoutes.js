@@ -6,13 +6,12 @@ router.get('/', (req, res) => {
   res.redirect('/products');
 });
 
-//rutas para el publico
-
+//RUTAS DE VISTA AL PUBLICO
 router.get('/products', productController.showProducts); // Devuelve todos los productos. Cada producto tendrá un enlace a su página de detalle.
 router.get('/products/:productId', productController.showProductById); //Devuelve el detalle de un producto.
 
-//rutas para el administrador
-
+//RUTAS PARA EL ADMINISTRADOR
+//vista
 router.get('/dashboard', productController.showDashboard); //Devuelve el dashboard del administrador, En el dashboard aparecerán todos los artículos que se hayan subido. Si clickamos en uno de ellos nos llevará a su página para poder actualizarlo o eliminarlo.
 router.get('/dashboard/new', productController.showNewProductForm); // Devuelve el formulario para subir un artículo nuevo.
 router.get('/dashboard/:productId', productController.showProductById); // Devuelve el detalle de un producto en el dashboard.      
