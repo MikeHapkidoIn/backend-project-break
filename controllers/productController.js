@@ -181,4 +181,23 @@ deleteProduct: async (req, res) => {
 
 }
 
+const Product = require('../models/Product');
+
+// crea un nuevo producto y guarda la imagen de Cloudinary
+exports.createProduct = async (req, res) => {
+  try {
+    const { name, category } = req.body;
+    const imageUrl = req.file?.path; // cloudinary sube la imagen y nos da la url
+
+    const newProduct = new Product({ name, category, image: imageUrl });
+    await newProduct.save();
+
+    res.redirect('/dashboard');
+  } catch (error) {
+    console.error('Error al crear producto:', error);
+    res.status(500).send('Error al crear producto');
+  }
+};
+
+
 module.exports = productController;

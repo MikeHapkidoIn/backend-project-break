@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const productController = require('../controllers/productController');
 
+const upload = require('../middlewares/uploadMiddleware');
+router.post('/dashboard', auth, upload.single('image'), productController.createProduct);
+
 router.get('/', (req, res) => {
   res.redirect('/products');
 });
@@ -24,5 +27,9 @@ router.put('/dashboard/:productId', productController.updateProduct); // Actuali
 //elimina
 router.delete('/dashboard/:productId/delete', productController.deleteProduct); // Elimina un producto.
 router.post('/dashboard/:productId/delete', productController.deleteProduct); // Elimina un producto. Usamos POST para evitar problemas con los navegadores que no soportan DELETE en formularios.
+
+const upload = require('../middlewares/uploadMiddleware');
+
+router.post('/dashboard', upload.single('image'), productController.createProduct);
 
 module.exports = router;
