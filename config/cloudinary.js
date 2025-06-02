@@ -1,31 +1,21 @@
-// config/cloudinary.js
 const cloudinary = require('cloudinary').v2;
-const { almacenamientoCloudinary } = require('multer-storage-cloudinary');
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
-// Carga las variables desde .env
-require('dotenv').config();
-
+// Configura cloudinary con tus credenciales
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key:    process.env.CLOUDINARY_API_KEY,
+  api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-// Configurar multer para que almacene en Cloudinary
-const almacenamiento = new almacenamientoCloudinary({
-  cloudinary,
-  params: async (req, file) => {
-    // Aquí puedes usar la categoría desde el formulario para crear carpetas
-    const category = req.body.category || 'generico';
-    return {
-      folder: `amason/${category}`,  // Subirá a cloudinary/amason/categoria/
-      allowed_formats: ['jpg', 'jpeg', 'png'],
-      public_id: `${Date.now()}-${file.originalname.split('.')[0]}`
-    };
+// Crea el almacenamiento
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'productos', // nombre de la carpeta en Cloudinary
+    allowed_formats: ['jpg', 'png', 'jpeg', 'webp'],
+    transformation: [{ width: 500, height: 500, crop: 'limit' }]
   }
 });
 
-module.exports = {
-  cloudinary,
-  storage
-};
+module.exports = { cloudinary, storage };
