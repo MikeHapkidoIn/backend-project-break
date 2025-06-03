@@ -30,5 +30,8 @@
   "bugs": {
     "url": "https://github.com/MikeHapkidoIn/backend-project-break/issues"
   },
-  "homepage": "https://github.com/MikeHapkidoIn/backend-project-break#readme"
+  "homepage": "https://github.com/MikeHapkidoIn/backend-project-break#readme",
+  "devDependencies": {
+    "supertest": "^7.1.1"
+  }
 }
