@@ -1,4 +1,15 @@
-const express = require('express')
+const app = require('./app'); // 
+require('dotenv').config();
+const dbConnecction = require('./config/db.js');
+
+const PORT = process.env.PORT;
+dbConnecction();
+
+app.listen(PORT, () => console.log(`http://localhost:${PORT}`));
+
+
+
+/*const express = require('express')
 const app = express()
 require('dotenv').config();
 const dbConnecction = require('./config/db.js')
@@ -24,4 +35,4 @@ app.use('/', productRoutes);
 const PORT = process.env.PORT;
 dbConnecction()
  
-app.listen(PORT, () => console.log(`http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`http://localhost:${PORT}`));*/

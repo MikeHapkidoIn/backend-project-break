@@ -1,15 +1,16 @@
 {
   "scripts": {
-    "start": "node --watch index.js"
+    "start": "node --watch index.js",
+    "test": "jest"
   },
   "dependencies": {
-    "cloudinary": "^1.41.3",
+    "cloudinary": "1.41.3",
     "dotenv": "16.5.0",
     "express": "5.1.0",
     "method-override": "^3.0.0",
     "mongoose": "8.15.1",
-    "multer": "^2.0.0",
-    "multer-storage-cloudinary": "^4.0.0",
+    "multer": "2.0.0",
+    "multer-storage-cloudinary": "4.0.0",
     "node": "22.16.0",
     "override": "0.0.1"
   },
@@ -32,6 +33,7 @@
   },
   "homepage": "https://github.com/MikeHapkidoIn/backend-project-break#readme",
   "devDependencies": {
+    "jest": "^29.7.0",
     "supertest": "^7.1.1"
   }
 }
