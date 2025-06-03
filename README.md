@@ -4,16 +4,26 @@ Vamos a montar una tienda de ropa con un catálogo de productos y un dashboard p
 
 ## Índice
 
+- [Tienda de ropa](#tienda-de-ropa)
+  - [Índice](#índice)
   - [Estructura de archivos](#estructura-de-archivos)
-  - [Creación de base de datos](#creación-de-base-de-datos)
+    - [Características de los archivos](#características-de-los-archivos)
+  - [Creacíon de base de datos](#creacíon-de-base-de-datos)
   - [Creación del servidor](#creación-del-servidor)
-  - [Creación de modelos](#creación-de-modelos)
+  - [Creación de modelo](#creación-de-modelo)
+  - [Subida de imagenes](#subida-de-imagenes)
   - [Creación de rutas](#creación-de-rutas)
   - [Creación de controladores](#creación-de-controladores)
   - [Despliegue](#despliegue)
   - [Documentación](#documentación)
-  - [Bonus](#bonus)
+  - [PISTA](#pista)
+  - [BONUS](#bonus)
+  - [Bonus 1 - API](#bonus-1---api)
+  - [Bonus 2 - Tests](#bonus-2---tests)
+  - [Bonus 3 - Documentación con Swagger](#bonus-3---documentación-con-swagger)
+  - [Bonus 4 - Interpretación de login + middleware. Rutas protegidas](#bonus-4---interpretación-de-login--middleware-rutas-protegidas)
   - [Recursos](#recursos)
+  - [La entrega del proyecto tenéis que mandarnos los siguiente:](#la-entrega-del-proyecto-tenéis-que-mandarnos-los-siguiente)
 
 ## Estructura de archivos
 
