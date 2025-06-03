@@ -5,6 +5,9 @@ function getNewProductForm() {
       <input type="text" name="category" placeholder="Categoría" required />
       <input type="file" name="image" accept="image/*" required />
       <button type="submit">Subir</button>
+      <h1><%= product.name %></h1>
+<p>Categoría: <%= product.category %></p>
+<img src="<%= product.image %>" alt="Imagen del producto" style="max-width: 300px;" />
     </form>
   `;
 }
