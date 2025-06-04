@@ -12,7 +12,8 @@
     "multer": "2.0.0",
     "multer-storage-cloudinary": "4.0.0",
     "node": "22.16.0",
-    "override": "0.0.1"
+    "override": "0.0.1",
+    "swagger-ui-express": "^5.0.1"
   },
   "name": "backend-project-break",
   "version": "1.0.0",
