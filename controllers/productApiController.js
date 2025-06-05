@@ -1,4 +1,4 @@
-const Product = require('../models/Product');
+const { Product, sizes, categories } = require('../models/Product');
 
 const apiController = {
 // GET /api/products
@@ -24,7 +24,7 @@ showProductById: async (req, res) => {
   }
 },
 
-// POST /api/products
+// POST /api/create
 createProduct: async (req, res) => {
   try {
     const newProduct = new Product(req.body);
@@ -50,7 +50,7 @@ updateProduct: async (req, res) => {
   } catch (error) {
     res.status(400).json({ error: 'Error al actualizar el producto' });
   }
-},
+}, 
 
 // DELETE /api/products/:productId
  deleteProduct:  async (req, res) => {
@@ -68,3 +68,12 @@ updateProduct: async (req, res) => {
 };
 
 module.exports = apiController;
+
+
+
+
+
+
+
+
+
