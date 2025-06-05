@@ -30,17 +30,19 @@ const router = express.Router();
 const productController = require('../controllers/productController');
 const requireAuth = require('../middlewares/authMiddleware');
 
-// Públicas
+// Rutas públicas
 router.get('/products', productController.showProducts);
 router.get('/products/:productId', productController.showProductById);
 
-// Protegidas
+// Rutas protegidas (solo accesibles si estás autenticado)
 router.get('/dashboard', requireAuth, productController.showDashboard);
-router.get('/dashboard/new', requireAuth, productController.showNewProductForm);
+router.get('/dashboard/new', requireAuth, productController.showNewProduct);
 router.get('/dashboard/:productId', requireAuth, productController.showProductById);
-router.get('/dashboard/:productId/edit', requireAuth, productController.showEditProductForm);
+router.get('/dashboard/:productId/edit', requireAuth, productController.showEditProduct);
 
 router.post('/dashboard', requireAuth, productController.createProduct);
 router.put('/dashboard/:productId', requireAuth, productController.updateProduct);
 router.delete('/dashboard/:productId/delete', requireAuth, productController.deleteProduct);
 router.post('/dashboard/:productId/delete', requireAuth, productController.deleteProduct);
+
+module.exports = router;

@@ -1,4 +1,4 @@
-function getEditProductForm(product, categories, sizes) {
+function getEditProductForm(product, categories = [], sizes = []) {
   return `
     <!DOCTYPE html>
     <html lang="es">
@@ -62,9 +62,7 @@ function getEditProductForm(product, categories, sizes) {
       </form>
     </body>
     </html>
-  `;
+  `
 }
 
-module.exports = getEditProductForm;
-
-
+module.exports = getEditProductForm

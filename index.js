@@ -55,6 +55,8 @@ const session = require('express-session');
 const dotenv = require('dotenv');
 dotenv.config();
 
+const dbConnection = require('./config/db');  // Importa la conexión
+
 const productRoutes = require('./routes/productRoutes');
 const authRoutes = require('./routes/authRoutes');
 
@@ -78,6 +80,16 @@ app.use('/', productRoutes);
 app.use('/css', express.static(__dirname + '/public/css'));
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Servidor en http://localhost:${PORT}`);
-});
+
+async function startServer() {
+  try {
+    await dbConnection();  // Espera a que se conecte la BBDD
+    app.listen(PORT, () => {
+      console.log(`Servidor en http://localhost:${PORT}`);
+    });
+  } catch (err) {
+    console.error('No se pudo iniciar el servidor:', err.message);
+  }
+}
+
+startServer();
